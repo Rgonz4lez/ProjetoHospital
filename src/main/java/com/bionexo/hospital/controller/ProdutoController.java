@@ -2,7 +2,9 @@ package com.bionexo.hospital.controller;
 
 import com.bionexo.hospital.model.Produtos;
 import com.bionexo.hospital.repository.ProdutosRepository;
+import com.oracle.svm.core.annotate.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,8 +22,9 @@ public class ProdutoController {
         return ProdutosRepository.findAll();
     }
 
-    @PostMapping
-    public Produtos adicionar(@RequestBody Produtos produtos){
+    @PostMapping("/inserirProduto")
+    @ResponseStatus(HttpStatus.CREATED)
+    public  Produtos save(@RequestBody Produtos produtos){
         return ProdutosRepository.save(produtos);
-    }
+    };
 }

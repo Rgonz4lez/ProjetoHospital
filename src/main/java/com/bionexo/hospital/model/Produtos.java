@@ -1,7 +1,10 @@
 package com.bionexo.hospital.model;
 
 import jakarta.persistence.*;
+import jdk.jfr.Name;
 import lombok.Data;
+
+import java.time.Instant;
 
 @Data
 @Entity
@@ -13,6 +16,18 @@ public class Produtos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
-    private String name;
+    @Column(name= "nome_produto", nullable = false)
+    private String nome;
+
+    @Column(name= "descricao_produto")
+    private String descricao;
+
+    @Column(name = "status_produto")
+    private String status;
+
+    @Column(name = "dt_criacao")
+    private Instant dataCriacao;
+
+    @Column(name= "dt_alteracao")
+    private Instant dataAlteracao;
 }
