@@ -2,7 +2,9 @@ package com.bionexo.hospital.controller;
 
 import com.bionexo.hospital.model.Produtos;
 import com.bionexo.hospital.repository.ProdutosRepository;
-import com.oracle.svm.core.annotate.Delete;
+import jakarta.persistence.Id;
+import org.apache.logging.log4j.message.Message;
+import org.hibernate.annotations.JavaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -27,4 +29,17 @@ public class ProdutoController {
     public  Produtos save(@RequestBody Produtos produtos){
         return ProdutosRepository.save(produtos);
     };
+
+    @PutMapping
+    @ResponseStatus(HttpStatus.OK)
+    public Produtos editProdutos(@RequestBody Produtos produtos){
+      return ProdutosRepository.save(produtos);
+    };
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id) {
+        ProdutosRepository.deleteById(id);
+    };
+
 }
