@@ -39,14 +39,14 @@ public class ProdutoController {
     @PostMapping("/inserirProduto")
     @ResponseStatus(HttpStatus.CREATED)
     public  ProdutoModel save(@RequestBody ProdutoDto ProdutoDto){
-//        ProdutoModel produtos = new ProdutoModel();
-//        produtos.setDescricao(ProdutoDto.getDescricao());
-//        produtos.setNome(ProdutoDto.getNome());
-//        produtos.setId(ProdutoDto.getId());
-//        produtos.setStatus(ProdutoDto.getStatus());
-//        produtos.setDataCriacao(Instant.now());
-//        produtos.setDataAlteracao(Instant.now());
-        ProdutoModel produtos= ProdutoMapper.instance.mapToProdutoModel(ProdutoDto);
+        ProdutoModel produtos = new ProdutoModel();
+        produtos.setDescricao(ProdutoDto.getDescricao());
+        produtos.setNome(ProdutoDto.getNome());
+        produtos.setId(ProdutoDto.getId());
+        produtos.setStatus(ProdutoDto.getStatus());
+        produtos.setDataCriacao(Instant.now());
+        produtos.setDataAlteracao(Instant.now());
+        produtos = ProdutoMapper.instance.mapToProdutoModel(ProdutoDto);
         return ProdutosRepository.save(produtos);
     };
 

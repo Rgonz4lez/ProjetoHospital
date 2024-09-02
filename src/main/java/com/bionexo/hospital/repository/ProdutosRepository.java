@@ -11,5 +11,5 @@ public interface ProdutosRepository extends JpaRepository<ProdutoModel, Long> {
 
     boolean existsByNomeAndIdNot(String nome, long id);
 
-    boolean deletarProduto(Long id);
+    void deletarProduto(Long id);
 }

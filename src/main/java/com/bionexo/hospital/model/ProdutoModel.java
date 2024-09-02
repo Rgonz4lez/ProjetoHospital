@@ -1,17 +1,15 @@
 package com.bionexo.hospital.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+
 
 import java.time.Instant;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name= "produtos")
-
-public class ProdutoModel {
+public class ProdutoModel{
 
     @Id
     @Column(name = "id_produto", nullable = false)
@@ -32,5 +30,4 @@ public class ProdutoModel {
 
     @Column(name = "dt_alteracao")
     private Instant dataAlteracao;
-
 }
