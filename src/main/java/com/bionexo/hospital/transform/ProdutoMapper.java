@@ -5,6 +5,8 @@ import com.bionexo.hospital.model.ProdutoModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface ProdutoMapper {
     ProdutoMapper instance = Mappers.getMapper(ProdutoMapper.class);

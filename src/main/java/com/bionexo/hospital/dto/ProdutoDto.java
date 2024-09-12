@@ -24,44 +24,46 @@ public class ProdutoDto {
         return id;
     }
 
-    public void setId(long id){
-        this.id = id;
-    }
-
     public String getNome() {
         return nome;
-    }
-
-    void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getDescricao() {
         return descricao;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
     public String getStatus() {
         return status;
     }
 
-    public  void setStatus(String status){
-        this.status = status;
-    }
     public Instant getDataCriacao() {
         return dataCriacao;
+    }
+
+    public Instant getDataAlteracao() {
+        return dataAlteracao;
+    }
+
+
+    public void setId(long id) { this.id = id; };
+
+    void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+
+    public  void setStatus(String status){
+        this.status = status;
     }
 
     public void setDataCriacao(Instant dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public Instant getDataAlteracao() {
-        return dataAlteracao;
-    }
 
     public void setDataAlteracao(Instant dataAlteracao) {
         this.dataAlteracao = dataAlteracao;
