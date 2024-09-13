@@ -47,7 +47,7 @@ public class ProdutoDto {
 
     public void setId(long id) { this.id = id; };
 
-    void setNome(String nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 

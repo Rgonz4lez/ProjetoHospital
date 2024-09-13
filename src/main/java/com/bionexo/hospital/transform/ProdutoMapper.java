@@ -12,4 +12,5 @@ public interface ProdutoMapper {
     ProdutoMapper instance = Mappers.getMapper(ProdutoMapper.class);
     ProdutoModel mapToProdutoModel(ProdutoDto produtoDto);
     ProdutoDto mapProdutoDto(ProdutoModel produtoModel);
+    List<ProdutoDto> mapProdutoList(List<ProdutoModel> produtoModel);
 }

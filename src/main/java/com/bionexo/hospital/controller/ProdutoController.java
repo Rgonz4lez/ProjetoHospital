@@ -22,22 +22,21 @@ public class ProdutoController {
     private ProdutoService produtoService;
 
     @GetMapping("/listar")
-    public List<ProdutoModel>  listar() {
-        return ProdutosRepository.findALL();
+    public List<ProdutoDto>  listar() {
+        return produtoService.findAll();
     }
 
     @PostMapping("/inserirProduto")
     @ResponseStatus(HttpStatus.CREATED)
 
-    public  ProdutoModel save(@RequestBody ProdutoDto produtoDto){
+    public  ProdutoDto save(@RequestBody ProdutoDto produtoDto){
         return produtoService.save(produtoDto);
     };
 
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public ProdutoDto editProdutos(@RequestBody ProdutoDto produtoDto){
-            ProdutoModel produtoAtualizado = produtoService.atualizarProduto(produtoDto);
-            return ProdutoMapper.instance.mapProdutoDto(produtoAtualizado);
+        return produtoService.atualizarProduto(produtoDto);
     };
 
     @DeleteMapping("/{id}")

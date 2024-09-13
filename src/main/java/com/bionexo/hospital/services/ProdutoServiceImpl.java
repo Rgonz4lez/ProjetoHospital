@@ -4,6 +4,7 @@ import com.bionexo.hospital.dto.ProdutoDto;
 import com.bionexo.hospital.exception.ProdutoExistenteException;
 import com.bionexo.hospital.model.ProdutoModel;
 import com.bionexo.hospital.repository.ProdutosRepository;
+import com.bionexo.hospital.transform.ProdutoMapper;
 import lombok.AllArgsConstructor;
 
 import java.time.Instant;
@@ -11,9 +12,12 @@ import java.util.List;
 
 
 @AllArgsConstructor
-public abstract class ProdutoServiceImpl implements ProdutoService{
+public class ProdutoServiceImpl implements ProdutoService{
 
     private ProdutosRepository produtosRepository;
+
+    @Override
+    public List<ProdutoDto> findAll(){return ProdutoMapper.instance.mapProdutoList(produtosRepository.findAll());}
 
     @Override
     public boolean verificarNome(String nome, long id){
@@ -21,7 +25,7 @@ public abstract class ProdutoServiceImpl implements ProdutoService{
     }
 
     @Override
-    public ProdutoModel atualizarProduto(ProdutoDto produtoDto){
+    public ProdutoDto atualizarProduto(ProdutoDto produtoDto){
         ProdutoModel produtoExistente = produtosRepository.findById(produtoDto.getId()).orElseThrow(() -> new RuntimeException("Produto não encontrado"));
 
         if (produtosRepository.existsByNomeAndIdNot(produtoExistente.getNome(), produtoDto.getId())){
@@ -32,7 +36,7 @@ public abstract class ProdutoServiceImpl implements ProdutoService{
         produtoExistente.setDescricao(produtoDto.getDescricao());
         produtoExistente.setStatus(produtoDto.getStatus());
         produtoExistente.setDataAlteracao(Instant.now());
-        return produtosRepository.save(produtoExistente);
+        return ProdutoMapper.instance.mapProdutoDto(produtosRepository.save(produtoExistente));
     }
 
     @Override
@@ -44,12 +48,7 @@ public abstract class ProdutoServiceImpl implements ProdutoService{
     }
 
     @Override
-    public List<ProdutoModel> findAll() {
-        return produtosRepository.findAll();
-    }
-
-    @Override
-    public ProdutoModel save(ProdutoDto produtoDto) {
+    public ProdutoDto save(ProdutoDto produtoDto) {
         ProdutoModel produtos = new ProdutoModel();
         produtos.setDescricao(produtoDto.getDescricao());
         produtos.setNome(produtoDto.getNome());
@@ -57,6 +56,6 @@ public abstract class ProdutoServiceImpl implements ProdutoService{
         produtos.setStatus(produtoDto.getStatus());
         produtos.setDataCriacao(Instant.now());
         produtos.setDataAlteracao(Instant.now());
-        return produtosRepository.save(produtos);
+        return ProdutoMapper.instance.mapProdutoDto(produtosRepository.save(produtos));
     }
 }
